@@ -80,6 +80,7 @@ function flipcard() {
     chosenCardsId.push(cardId)
     if (chosenCards.length <= 2) { // To limit to only 2 cards shown
         this.setAttribute('src', cardArray[cardId].img) //Give img to the card
+        this.removeEventListener('click', flipcard);
     }
     if (chosenCards.length === 2) {
         setTimeout(checkMatch, 1000);
@@ -94,10 +95,13 @@ function checkMatch() {
         cards[firstCard].setAttribute('style', 'background-color: green;');
         cards[secondCard].setAttribute('style', 'background-color: green;');
         cardsScore += 2;
+        console.log(cardsScore);
     }
     else {
-        cards[firstCard].setAttribute('src', 'img/Square/R6_Logo.jpg')
-        cards[secondCard].setAttribute('src', 'img/Square/R6_Logo.jpg')
+        cards[firstCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
+        cards[secondCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
+        cards[firstCard].addEventListener('click', flipcard);
+        cards[secondCard].addEventListener('click', flipcard);
     }
     chosenCards = [];
     chosenCardsId = [];
