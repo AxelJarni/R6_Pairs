@@ -60,7 +60,7 @@ const cardArray = [
 const grid = document.querySelector('.grid');
 let chosenCards = [];
 let chosenCardsId = [];
-let cardsPaired = [];
+let cardsScore = 0;
 
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
@@ -78,7 +78,9 @@ function flipcard() {
     chosenCards.push(cardArray[cardId].name)
     chosenCardsId.push(cardId)
     this.setAttribute('src', cardArray[cardId].img) //Give img to the card
-    if (chosenCards.length > 1) {
+    if (chosenCards.length === 2) {
+        // document.getElementsByClassName("cardGame").disabled = true;
+        // setTimeout(function(){document.getElementsByClassName("cardGame").disabled = false;},500);
         setTimeout(checkformatch, 500);
     }
 }
@@ -90,7 +92,7 @@ function checkformatch() {
     if (chosenCards[0] === chosenCards[1]) {
         cards[firstCard].setAttribute('style', 'background-color: green;');
         cards[secondCard].setAttribute('style', 'background-color: green;');
-        cardsPaired.push(chosenCards)
+        cardsScore += 2;
     }
     else {
         cards[firstCard].setAttribute('src', 'img/Square/R6_Logo.jpg')
@@ -98,6 +100,9 @@ function checkformatch() {
     }
     chosenCards = [];
     chosenCardsId = [];
+    if (cardsScore === cardArray.length) {
+        alert('you won');
+    }
 }
 
 createBoard();
