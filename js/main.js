@@ -62,6 +62,7 @@ let chosenCards = [];
 let chosenCardsId = [];
 let cardsScore = 0;
 
+
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
         let card = document.createElement('img')
@@ -77,15 +78,15 @@ function flipcard() {
     let cardId = this.getAttribute('data-id')
     chosenCards.push(cardArray[cardId].name)
     chosenCardsId.push(cardId)
-    this.setAttribute('src', cardArray[cardId].img) //Give img to the card
+    if (chosenCards.length <= 2) { // To limit to only 2 cards shown
+        this.setAttribute('src', cardArray[cardId].img) //Give img to the card
+    }
     if (chosenCards.length === 2) {
-        // document.getElementsByClassName("cardGame").disabled = true;
-        // setTimeout(function(){document.getElementsByClassName("cardGame").disabled = false;},500);
-        setTimeout(checkformatch, 500);
+        setTimeout(checkMatch, 1000);
     }
 }
 
-function checkformatch() {
+function checkMatch() {
     let cards = document.querySelectorAll('img')
     const firstCard = chosenCardsId[0];
     const secondCard = chosenCardsId[1];
