@@ -56,3 +56,16 @@ const cardArray = [
         img: 'img/Square/ValkyrieSquare.png'
     }
 ];
+
+const grid = document.querySelector('.grid');
+
+function createBoard() {
+    for (let i = 0; i < cardArray.length; i++) {
+        let card = document.createElement('img')
+        card.setAttribute('src', 'img/Square/R6_Logo.jpg')
+        card.setAttribute('data-id', i)
+        card.className += 'cardGame col-4 my-2'
+        grid.appendChild(card)
+    }
+}
+createBoard();
