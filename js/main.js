@@ -17,11 +17,11 @@ const cardArray = [
     },
     {
         name: 'Maestro',
-        img: 'img/Square/NomadSquare.png'
+        img: 'img/Square/MaestroSquare.png'
     },
     {
         name: 'Maestro',
-        img: 'img/Square/NomadSquare.png'
+        img: 'img/Square/MaestroSquare.png'
     },
     {
         name: 'Nomad',
@@ -58,6 +58,9 @@ const cardArray = [
 ];
 
 const grid = document.querySelector('.grid');
+let chosenCards = [];
+let chosenCardsId = [];
+let cardsPaired = [];
 
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
@@ -65,7 +68,37 @@ function createBoard() {
         card.setAttribute('src', 'img/Square/R6_Logo.jpg')
         card.setAttribute('data-id', i)
         card.className += 'cardGame col-4 my-2'
+        card.addEventListener('click', flipcard)
         grid.appendChild(card)
     }
 }
+
+function flipcard() {
+    let cardId = this.getAttribute('data-id')
+    chosenCards.push(cardArray[cardId].name)
+    chosenCardsId.push(cardId)
+    this.setAttribute('src', cardArray[cardId].img) //Give img to the card
+    if (chosenCards.length > 1) {
+        setTimeout(checkformatch, 500);
+    }
+}
+
+function checkformatch() {
+    let cards = document.querySelectorAll('img')
+    const firstCard = chosenCardsId[0];
+    const secondCard = chosenCardsId[1];
+    if (chosenCards[0] === chosenCards[1]) {
+        cards[firstCard].setAttribute('style', 'background-color: green;');
+        cards[secondCard].setAttribute('style', 'background-color: green;');
+        cardsPaired.push(chosenCards)
+    }
+    else {
+        cards[firstCard].setAttribute('src', 'img/Square/R6_Logo.jpg')
+        cards[secondCard].setAttribute('src', 'img/Square/R6_Logo.jpg')
+    }
+    chosenCards = [];
+    chosenCardsId = [];
+}
+
 createBoard();
+
