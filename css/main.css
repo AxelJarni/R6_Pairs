@@ -93,20 +93,25 @@ body {
 }
 
 .cardGame {
-  height: auto;
-  width: 33%;
-  padding: 0.5em;
   background-clip: content-box;
+  max-width: 1000px;
 }
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .cardGame {
     width: 25%;
     height: auto;
   }
+} */
+
+@media only screen and (min-width: 1024px) {
+  .cardGame {
+    width: 20%;
+    height: auto;
+  }
 }
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 1440px) {
   .cardGame {
     width: 14.28%;
     height: auto;

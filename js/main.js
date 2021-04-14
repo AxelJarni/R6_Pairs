@@ -63,13 +63,14 @@ let chosenCards = [];
 let chosenCardsId = [];
 let cardsScore = 0;
 
+let clickCountdown = 40;
 
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
         let card = document.createElement('img')
         card.setAttribute('src', 'img/Square/R6_Logo.jpg')
         card.setAttribute('data-id', i)
-        card.className += 'cardGame'
+        card.className += 'cardGame col-4 col-md-3 my-2'
         card.addEventListener('click', flipcard)
         grid.appendChild(card)
     }
@@ -79,12 +80,19 @@ function flipcard() {
     let cardId = this.getAttribute('data-id')
     chosenCards.push(cardArray[cardId].name)
     chosenCardsId.push(cardId)
+    clickCountdown --;
     if (chosenCards.length <= 2) { // To limit to only 2 cards shown
         this.setAttribute('src', cardArray[cardId].img) //Give img to the card
         this.removeEventListener('click', flipcard);
     }
     if (chosenCards.length === 2) {
         setTimeout(checkMatch, 1000);
+    }
+    if (clickCountdown === 39) {
+        startTimer();
+    }
+    if (clickCountdown === 0) {
+        alert('too many tries');
     }
 }
 
@@ -96,7 +104,6 @@ function checkMatch() {
         cards[firstCard].setAttribute('style', 'background-color: green;');
         cards[secondCard].setAttribute('style', 'background-color: green;');
         cardsScore += 2;
-        console.log(cardsScore);
     }
     else {
         cards[firstCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
@@ -110,6 +117,19 @@ function checkMatch() {
         alert('you won');
     }
 }
+let timeleft = 10;
 
+function startTimer() {
+    let downloadTimer = setInterval(function(){
+        if(timeleft <= 0){
+          clearInterval(downloadTimer);
+          document.getElementById("time").innerHTML = "Finished";
+          timeleft = 10;
+        } else {
+          document.getElementById("time").innerHTML = timeleft + " seconds remaining";
+        }
+        timeleft -= 1;
+      }, 1000);
+}
 createBoard();
 
