@@ -69,7 +69,7 @@ function createBoard() {
         let card = document.createElement('img')
         card.setAttribute('src', 'img/Square/R6_Logo.jpg')
         card.setAttribute('data-id', i)
-        card.className += 'cardGame col-4 p-1'
+        card.className += 'cardGame col-4 col-md-3'
         card.addEventListener('click', flipcard)
         grid.appendChild(card)
     }
