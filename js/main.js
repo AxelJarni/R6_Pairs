@@ -151,9 +151,11 @@ function showboard() {
     let startBtn = document.getElementById('start');
     let grid = document.getElementById('grid');
     let ending = document.getElementById('ending');
+    let titles = document.getElementById('titles');
     grid.classList.remove('hidden');
     startBtn.classList.add('hidden');
     ending.classList.add('hidden');
+    titles.classList.add('hidden');
 }
 
 function youLose() {
@@ -169,7 +171,7 @@ function play(){
     grid.innerHTML = '';
     timeleft = 30;
     createBoard();
-    showboard();
+    showboard(); 
 }
 
 

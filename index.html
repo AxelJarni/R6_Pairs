@@ -27,9 +27,9 @@
 <header class="container-fluid">
   <div class="row text-center align-items-center">
     <div>
-      <img src="../R6_Pairs/img/Background/Logo1.png" alt="Logo Rainbow 6" id="logoR6">
+      <a href="index.html"><img src="../R6_Pairs/img/Background/Logo1.png" alt="Logo Rainbow 6" id="logoR6"></a>
     </div>
-    <div class="titles text-center align-items-center mx-auto">
+    <div id="titles" class="titles text-center align-items-center mx-auto">
       <h1>Memory Game</h1>
       <h2>Rainbow 6 Siege<br>Operators edition</h2>
     </div>
@@ -39,12 +39,21 @@
 <main class="container-fluid">
   <div class="row grid justify-content-between hidden" id="grid"> <!--To manage number per row by size of screen-->
   </div>
-  <div class= "" id="start">
-    <button onclick="play()">START</button>
+  <div class= "row text-center my-5 text-justify" id="start">
+    <div class="rules">
+      <h3><u>Rules of the game</u></h3>
+      <p>On the board will be 7 pairs of cards, each of them representing a different R6 operator.<br>
+      You can flip only 2 cards per turn to identify a pair during that turn.<br>
+      You will have XX seconds and XX tries to find them all.</p>
+      <h4>Ready to play ?</h4>
+    </div>
+    <div>
+      <button id="playButton" onclick="play()">Play</button>
+    </div>
   </div>
   <div class="hidden" id="ending">
-    <h3>you lose</h3>
-    <button onclick="play()">Replay</button>
+    <h3>You lost</h3>
+    <button id="playButton" onclick="play()">Replay</button>
   </div>
 </main>
   
