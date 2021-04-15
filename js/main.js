@@ -1,4 +1,4 @@
-const cardArray = [
+const squareArray = [
     {
         name: 'Ela',
         img: 'img/Square/ElaSquare.png'
@@ -57,13 +57,80 @@ const cardArray = [
     }
 ];
 
+const bigArray = [
+    {
+        name: 'Aruni',
+        img: 'img/Cards/AruniCard.png'
+    },
+    {
+        name: 'Aruni',
+        img: 'img/Cards/AruniCard.png'
+    },
+    {
+        name: 'Caveira',
+        img: 'img/Cards/CaveiraCard.png'
+    },
+    {
+        name: 'Caveira',
+        img: 'img/Cards/CaveiraCard.png'
+    },
+    {
+        name: 'Doc',
+        img: 'img/Cards/DocCard.png'
+    },
+    {
+        name: 'Doc',
+        img: 'img/Cards/DocCard.png'
+    },
+    {
+        name: 'Echo',
+        img: 'img/Cards/EchoCard.png'
+    },
+    {
+        name: 'Echo',
+        img: 'img/Cards/EchoCard.png'
+    },
+    {
+        name: 'Hibana',
+        img: 'img/Cards/HibanaCard.png'
+    },
+    {
+        name: 'Hibana',
+        img: 'img/Cards/HibanaCard.png'
+    },
+    {
+        name: 'Mozzie',
+        img: 'img/Cards/MozzieCard.png'
+    },
+    {
+        name: 'Mozzie',
+        img: 'img/Cards/MozzieCard.png'
+    },
+    {
+        name: 'Zero',
+        img: 'img/Cards/ZeroCard.png'
+    },
+    {
+        name: 'Zero',
+        img: 'img/Cards/ZeroCard.png'
+    }
+];
+
 const grid = document.querySelector('.grid');
+let cardArray = []
 let chosenCards = [];
 let chosenCardsId = [];
 let cardsScore = 0;
 let timerLaunch = 0;
 let clickCountdown = 30;
 let timeleft = 30;
+
+if (window.matchMedia("(min-width: 1024px").matches) {
+    cardArray = bigArray;
+}
+else {
+    cardArray = squareArray;
+}
 
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
@@ -85,7 +152,12 @@ function createBoard() {
             <p id= "logoTries">${clickCountdown/2} Tries left</p>`
         }
         let card = document.createElement('img')
-        card.setAttribute('src', 'img/Square/R6_Logo.jpg')
+        if (window.matchMedia("(min-width: 1024px").matches) {
+            card.setAttribute('src', 'img/Cards/logoCard.jpg')
+        }
+        else {
+            card.setAttribute('src', 'img/Square/R6_Logo.jpg')
+        }
         card.setAttribute('data-id', i)
         card.className += 'cardGame col-4 col-md-3 my-2'
         card.addEventListener('click', flipcard)
@@ -128,8 +200,14 @@ function checkMatch() {
         cardsScore += 2;
     }
     else {
-        cards[firstCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
-        cards[secondCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
+        if (window.matchMedia("(min-width: 1024px").matches) {
+            cards[firstCard].setAttribute('src', 'img/Cards/logoCard.jpg')
+            cards[secondCard].setAttribute('src', 'img/Cards/logoCard.jpg')
+        }
+        else {
+            cards[firstCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
+            cards[secondCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
+        }
         cards[firstCard].addEventListener('click', flipcard);
         cards[secondCard].addEventListener('click', flipcard);
     }
