@@ -87,6 +87,140 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+@font-face {
+  font-family: scout;
+  src: url(../doc/font/ScoutCond-Bold.otf);
+}   
+
+body {
+  min-height: 100vh;
+  position: relative;
+  background: linear-gradient(to right bottom, #000000, #eed816);
+  font-family: scout, serif;
+  color: white;
+}
+#titleInfo p {
+  margin: 0.3em 0;
+}
+.titles {
+  width: 60vw;
+}
+
+#titlesLogo {
+  display: none;
+}
+
+h1 {
+  border-bottom: 2px solid white;
+  margin: 0;
+  font-size: 2.6em;
+}
+h3 {
+  font-size: 1.5em;
+}
+h4 {
+  font-size: 1.5em;
+}
+#logoR6 {
+  width: 80vw;
+  margin: auto;
+  max-width: 600px;
+}
+
+.cardGame {
+  background-clip: content-box;
+  max-width: 1000px;
+}
+
+#spaceTime, #spaceTries{
+  font-size: 5.5vw;
+  /* font-weight: bold; */
+  color: white;
+}
+
+#start {
+  font-size: 1.5em;
+}
+
+.rules {
+  background-color: rgba(0, 0, 0, 0.157);
+}
+
+.playButton {
+  width: 30%;
+  border-radius: 5px;
+  margin: 0.5em auto;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  background-color: #fff;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease 0s;
+  max-width: 200px;
+}
+.playButton:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+#titleInfo{
+  display: none;
+}
+
+/* .flipped {
+  transform: rotateY(180deg);
+  transition-duration: 1s; 
+} */
+
+@media only screen and (min-width: 768px) {
+  .space {
+    width: 50%;
+  }
+  .titles {
+    width: 40vw;
+  }
+  .rules{
+    max-width: 70%;
+    margin: auto;
+  }
+  /* .cardGame {
+    width: 25%;
+    height: auto;
+  } */
+}
+
+@media only screen and (min-width: 1024px) {
+  /* .cardGame {
+    width: 20%;
+    height: auto;
+  } */
+}
+
+@media only screen and (min-width: 1024px) {
+  .space {
+    display: none;
+  }
+  .cardGame {
+    width: 14.1vw;
+    height: auto;
+  }
+  .titles {
+    width: 25vw;
+  }
+  .rules{
+    max-width: 800px;
+    margin: auto;
+  }
+  #titleInfo {
+    display: block;
+    max-height: 200px;
+    font-size: 3em;
+  }
+  hr {
+    margin: 0;
+  }
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
