@@ -1,3 +1,4 @@
+// Array for smaller screen version with square Ops
 const squareArray = [
     {
         name: 'Ela',
@@ -57,6 +58,7 @@ const squareArray = [
     }
 ];
 
+// Array for bigger screen version with cards Ops
 const bigArray = [
     {
         name: 'Aruni',
@@ -116,6 +118,7 @@ const bigArray = [
     }
 ];
 
+// *VARIABLES*
 const grid = document.querySelector('.grid');
 let cardArray = []
 let chosenCards = [];
@@ -125,6 +128,7 @@ let timerLaunch = 0;
 let clickCountdown = 30;
 let timeleft = 30;
 
+// Media Query to pick the good array depending of window size
 if (window.matchMedia("(min-width: 1024px").matches) {
     cardArray = bigArray;
 }
@@ -132,10 +136,13 @@ else {
     cardArray = squareArray;
 }
 
+// *FUNCTIONS* 
+
+// Create the bord by creating a grid of img (including a spacing div to put info inside)
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
-        if (i===1) {
-            let space = document.createElement('div');
+        if (i===1) { // Create a spacing between 1st and 2nd card for info
+            let space = document.createElement('div'); // Used for small/medium screen to show game info in the space created top middle
             space.className += 'space text-center align-items-center col-4 col-md-3 my-auto';
             space.innerHTML = 
             `
@@ -143,7 +150,7 @@ function createBoard() {
             <hr>
             <p id= "spaceTries">${clickCountdown/2} Tries left</p>`
             grid.appendChild(space);
-            let titleInfo = document.getElementById('titleInfo');
+            let titleInfo = document.getElementById('titleInfo'); // Used for big screen only when info is in the header with cards format
             titleInfo.classList.remove('hidden');
             titleInfo.innerHTML = 
             `
@@ -152,7 +159,7 @@ function createBoard() {
             <p id= "logoTries">${clickCountdown/2} Tries left</p>`
         }
         let card = document.createElement('img')
-        if (window.matchMedia("(min-width: 1024px").matches) {
+        if (window.matchMedia("(min-width: 1024px").matches) { //Media Query to make the img be either a square or card
             card.setAttribute('src', 'img/Cards/logoCard.jpg')
         }
         else {
@@ -165,6 +172,7 @@ function createBoard() {
     }
 }
 
+// Flip the card and call other functions depending of the implications of the click
 function flipcard() {
     let cardId = this.getAttribute('data-id')
     chosenCards.push(cardArray[cardId].name)
@@ -174,15 +182,14 @@ function flipcard() {
         this.setAttribute('src', cardArray[cardId].img) //Give img to the card
         this.removeEventListener('click', flipcard); //Remove click monitoring to avoid cheating and over counting tries
     }
-    if (chosenCards.length === 2) {
+    if (chosenCards.length === 2) { // When user pick a pair of cards call for checking match and deduct a try on counter
         setTimeout(checkMatch, 1000);
         clickCountdown -=2;
         document.getElementById('spaceTries').innerHTML = clickCountdown/2 + ' Tries left';
         document.getElementById('logoTries').innerHTML = clickCountdown/2 + ' Tries left';
     }
-    if (timerLaunch === 1) {
+    if (timerLaunch === 1) { // Call the function to start the timer on first click
         startTimer();
-        console.log("timer should start");
     }
     // if (clickCountdown === 0 || timeleft === 0) {
     //     setTimeout(youLose, 1100);
@@ -190,11 +197,12 @@ function flipcard() {
     // }
 }
 
+// Check for match between the pair of cards chosen by User
 function checkMatch() {
     let cards = document.querySelectorAll('div.grid > img')
     const firstCard = chosenCardsId[0];
     const secondCard = chosenCardsId[1];
-    if (chosenCards[0] === chosenCards[1]) {
+    if (chosenCards[0] === chosenCards[1]) { // Matched pair = different background and add score
         cards[firstCard].setAttribute('style', 'background-color: green;');
         cards[secondCard].setAttribute('style', 'background-color: green;');
         cardsScore += 2;
@@ -208,39 +216,45 @@ function checkMatch() {
             cards[firstCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
             cards[secondCard].setAttribute('src', 'img/Square/R6_Logo.jpg');
         }
-        cards[firstCard].addEventListener('click', flipcard);
+        cards[firstCard].addEventListener('click', flipcard); // Give back the click event listener since it's not a match so that User can try those cards again.
         cards[secondCard].addEventListener('click', flipcard);
     }
-    chosenCards = [];
+    chosenCards = []; //Reset the pair chosen
     chosenCardsId = [];
     // if (cardsScore === cardArray.length) {
     //     youWin();
     // }
 }
 
+// Start the time limit
 function startTimer() {
     let gameTimer = setInterval(function(){
         timeleft -= 1;
-        if(timeleft === 0 || clickCountdown === 0){
+        if(timeleft === 0 || clickCountdown === 0){ // Losing conditions by time or click count
+            // document.getElementById('spaceTime').innerHTML = "0";
+            setTimeout(youLose, 1100); // Calling losing screen
             clearInterval(gameTimer);
-            document.getElementById('spaceTime').innerHTML = "0";
-            setTimeout(youLose, 1100);
-            clickCountdown = 30;
+            clickCountdown = 30; // Resetting values, useful if replay.
             timeleft = 30;
             timerLaunch = 0;
             cardsScore = 0;
+            chosenCards = [];
+            chosenCardsId = [];
+            return; // Exit function to avoid timer problem if losing on time then replay
         }
-        if(cardsScore === cardArray.length) {
+        if(cardsScore === cardArray.length) { // Winning condition and call winning screen
             youWin();
             clearInterval(gameTimer);
+            return;
         } 
-        else {
+        else { // Update the time on for game info every interval (1s)
           document.getElementById(('spaceTime')).innerHTML = timeleft + ' SEC';
           document.getElementById(('logoTime')).innerHTML = timeleft + ' SEC';
         }
       }, 1000);
 }
 
+// Show the board when User click play/replay and hide the other elements
 function showboard() {
     let start = document.getElementById('start');
     let grid = document.getElementById('grid');
@@ -254,6 +268,7 @@ function showboard() {
     titles.classList.add('hidden');
 }
 
+// Losing screen shown and hide other elements
 function youLose() {
     let grid = document.getElementById('grid');
     let losing = document.getElementById('losing');
@@ -261,6 +276,7 @@ function youLose() {
     grid.classList.add('hidden');
 }
 
+// Winning screen shown and hide other elements
 function youWin(){
     let grid = document.getElementById('grid');
     let winning = document.getElementById('winning');
@@ -269,10 +285,12 @@ function youWin(){
     console.log('win function declared');
 }
 
+// Game function called on button click
 function play(){
     let grid = document.getElementById('grid');
-    cardArray.sort(() => 0.5 - Math.random()) //Sorting array with a Math Random. 0.5 to allow sorting inside with neg/pos value. Would be better with Fischer Yates
-    grid.innerHTML = '';
+    // cardArray.sort(() => 0.5 - Math.random()) //Shuffle array with simple random. Not random enough results.
+    cardArray = shuffleArray(cardArray); // Shuffle Array
+    grid.innerHTML = ''; // Reset grid and values then call the playing functions
     clickCountdown = 30;
     timeleft = 30;
     timerLaunch = 0;
@@ -281,4 +299,41 @@ function play(){
     showboard(); 
 }
 
+// function shuffleArray(cardArray) { // Durstenfeld shuffle
+//     if (window.matchMedia("(min-width: 1024px").matches) {
+//         cardArray = bigArray;
+//     }
+//     else {
+//         cardArray = squareArray;
+//     }
+//     for (let i = cardArray.length - 1; i > 0; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         [cardArray[i], cardArray[j]] = [cardArray[j], cardArray[i]];
+//     }
+//     return cardArray;
+// }
+function shuffleArray(cardArray) { // Using Fisher-Yates shuffle for best random
+    if (window.matchMedia("(min-width: 1024px").matches) {
+        cardArray = bigArray;
+    }
+    else {
+        cardArray = squareArray;
+    }
+    var currentIndex = cardArray.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = cardArray[currentIndex];
+      cardArray[currentIndex] = cardArray[randomIndex];
+      cardArray[randomIndex] = temporaryValue;
+    }
+  
+    return cardArray;
+  }
 

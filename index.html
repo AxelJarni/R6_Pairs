@@ -24,8 +24,8 @@
 
 <body>
   <!-- Add your site or application content here -->
-<header class="container-fluid">
-  <div class="row text-center align-items-center">
+<header class="container-fluid"> 
+  <div class="row text-center align-items-center"> <!-- Header with logo and game information depending of screen size -->
     <div class="row m-auto">
       <div class="col-12 col-lg-6 m-auto">
         <a href="index.html"><img src="../R6_Pairs/img/Background/Logo1.png" alt="Logo Rainbow 6" id="logoR6"></a>
@@ -42,9 +42,9 @@
 </header>
 
 <main class="container-fluid">
-  <div class="row grid justify-content-between hidden" id="grid">
+  <div class="row grid justify-content-between hidden" id="grid"> <!-- Grid div where cards will be disposed -->
   </div>
-  <div class= "row text-center my-5 text-justify" id="start">
+  <div class= "row text-center my-5 text-justify" id="start"><!-- Div shown at the start of the game with rules and presentation -->
     <div class="rules">
       <h3><u>Rules of the game</u></h3>
       <p>On the board will be 7 pairs of cards, each of them representing a different R6 operator.<br>
@@ -56,12 +56,12 @@
       <button class="playButton" onclick="play()">Play</button>
     </div>
   </div>
-  <div class="row hidden" id="winning">
+  <div class="row hidden" id="winning"> <!-- Winning screen -->
     <div class="col-12 m-auto text-center align-items-center"><h3>CONGRATULATIONS</h3></div>
     <div class="col-12 gif m-auto text-center align-items-center"><img src="../R6_Pairs/img/Background/win.gif" alt="winning gif"></div>
     <div class="col-12 m-auto text-center align-items-center"><button class="playButton" onclick="play()">Replay</button></div>
   </div>
-  <div class="row hidden" id="losing">
+  <div class="row hidden" id="losing"> <!-- Losing screen -->
     <div class="col-12 m-auto text-center align-items-center"><h3>SORRY...</h3></div>
     <div class="col-12 gif m-auto text-center align-items-center"><img src="../R6_Pairs/img/Background/lose.gif" alt="losing gif"></div>
     <div class="col-12 m-auto text-center align-items-center"><button class="playButton" onclick="play()">Replay</button></div>

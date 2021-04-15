@@ -216,6 +216,7 @@ h4 {
   .cardGame {
     width: 14.1vw;
     height: auto;
+    max-height: 420px;
   }
   .titles {
     width: 25vw;
