@@ -62,7 +62,7 @@ let chosenCards = [];
 let chosenCardsId = [];
 let cardsScore = 0;
 let timerLaunch = 0;
-let clickCountdown = 10;
+let clickCountdown = 30;
 let timeleft = 30;
 
 function createBoard() {
@@ -103,10 +103,10 @@ function flipcard() {
         startTimer();
         console.log("timer should start");
     }
-    if (clickCountdown === 0) {
-        setTimeout(youLose, 1100);
-        clickCountdown = 10;
-    }
+    // if (clickCountdown === 0 || timeleft === 0) {
+    //     setTimeout(youLose, 1100);
+    //     clickCountdown = 30;
+    // }
 }
 
 function checkMatch() {
@@ -126,20 +126,26 @@ function checkMatch() {
     }
     chosenCards = [];
     chosenCardsId = [];
-    if (cardsScore === cardArray.length) {
-        alert('you won');
-    }
+    // if (cardsScore === cardArray.length) {
+    //     youWin();
+    // }
 }
 
 function startTimer() {
     let gameTimer = setInterval(function(){
         timeleft -= 1;
         if(timeleft === 0 || clickCountdown === 0){
-          clearInterval(gameTimer);
-          document.getElementById('spaceTime').innerHTML = "0";
-          youLose();
-          timeleft = 30;
-          timerLaunch = 0;
+            clearInterval(gameTimer);
+            document.getElementById('spaceTime').innerHTML = "0";
+            setTimeout(youLose, 1100);
+            clickCountdown = 30;
+            timeleft = 30;
+            timerLaunch = 0;
+            cardsScore = 0;
+        }
+        if(cardsScore === cardArray.length) {
+            youWin();
+            clearInterval(gameTimer);
         } 
         else {
           document.getElementById(('spaceTime')).innerHTML = timeleft + ' SEC';
@@ -148,28 +154,41 @@ function startTimer() {
 }
 
 function showboard() {
-    let startBtn = document.getElementById('start');
+    let start = document.getElementById('start');
     let grid = document.getElementById('grid');
-    let ending = document.getElementById('ending');
+    let losing = document.getElementById('losing');
+    let winning = document.getElementById('winning');
     let titles = document.getElementById('titles');
     grid.classList.remove('hidden');
-    startBtn.classList.add('hidden');
-    ending.classList.add('hidden');
+    winning.classList.add('hidden')
+    start.classList.add('hidden');
+    losing.classList.add('hidden');
     titles.classList.add('hidden');
 }
 
 function youLose() {
     let grid = document.getElementById('grid');
-    let ending = document.getElementById('ending');
-    ending.classList.remove('hidden');
+    let losing = document.getElementById('losing');
+    losing.classList.remove('hidden');
     grid.classList.add('hidden');
+}
+
+function youWin(){
+    let grid = document.getElementById('grid');
+    let winning = document.getElementById('winning');
+    winning.classList.remove('hidden');
+    grid.classList.add('hidden');
+    console.log('win function declared');
 }
 
 function play(){
     let grid = document.getElementById('grid');
     cardArray.sort(() => 0.5 - Math.random()) //Sorting array with a Math Random. 0.5 to allow sorting inside with neg/pos value. Would be better with Fischer Yates
     grid.innerHTML = '';
+    clickCountdown = 30;
     timeleft = 30;
+    timerLaunch = 0;
+    cardsScore = 0;
     createBoard();
     showboard(); 
 }

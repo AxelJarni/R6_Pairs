@@ -102,6 +102,11 @@ body {
 .titles {
   width: 60vw;
 }
+
+#titlesLogo {
+  display: none;
+}
+
 h1 {
   border-bottom: 2px solid white;
   margin: 0;
@@ -156,6 +161,7 @@ h4 {
   transform: translateY(-7px);
 }
 
+
 /* .flipped {
   transform: rotateY(180deg);
   transition-duration: 1s; 
@@ -199,6 +205,12 @@ h4 {
   .rules{
     max-width: 800px;
     margin: auto;
+  }
+  #titlesLogo {
+    display: block;
+  }
+  #titles {
+    display: none;
   }
 }
 
