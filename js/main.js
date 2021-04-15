@@ -73,8 +73,16 @@ function createBoard() {
             space.innerHTML = 
             `
             <p id= "spaceTime">${timeleft} SEC</p>
+            <hr>
             <p id= "spaceTries">${clickCountdown/2} Tries left</p>`
             grid.appendChild(space);
+            let titleInfo = document.getElementById('titleInfo');
+            titleInfo.classList.remove('hidden');
+            titleInfo.innerHTML = 
+            `
+            <p id= "logoTime">${timeleft} SEC</p>
+            <hr>
+            <p id= "logoTries">${clickCountdown/2} Tries left</p>`;
         }
         let card = document.createElement('img')
         card.setAttribute('src', 'img/Square/R6_Logo.jpg')

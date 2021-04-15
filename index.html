@@ -26,13 +26,12 @@
   <!-- Add your site or application content here -->
 <header class="container-fluid">
   <div class="row text-center align-items-center">
-    <div class="row">
-      <div class="col-12 col-lg-6">
+    <div class="row m-auto">
+      <div class="col-12 col-lg-6 m-auto">
         <a href="index.html"><img src="../R6_Pairs/img/Background/Logo1.png" alt="Logo Rainbow 6" id="logoR6"></a>
       </div>
-      <div id="titlesLogo" class="titles col-12 col-lg-6 text-center align-items-center mx-auto">
-        <h1>Memory Game</h1>
-        <h2>Rainbow 6 Siege<br>Operators edition</h2>
+      <div id="titleInfo" class="titles hidden col-12 col-lg-6 text-center align-items-center mx-auto">
+      
       </div>
     </div>
     <div id="titles" class="titles text-center align-items-center mx-auto">
@@ -54,16 +53,16 @@
       <h4>Ready to play ?</h4>
     </div>
     <div>
-      <button id="playButton" onclick="play()">Play</button>
+      <button class="playButton" onclick="play()">Play</button>
     </div>
   </div>
   <div class="hidden" id="winning">
     <h3>You Won !</h3>
-    <button id="playButton" onclick="play()">Replay</button>
+    <button class="playButton" onclick="play()">Replay</button>
   </div>
   <div class="hidden" id="losing">
     <h3>You lost</h3>
-    <button id="playButton" onclick="play()">Replay</button>
+    <button class="playButton" onclick="play()">Replay</button>
   </div>
 </main>
   

@@ -99,6 +99,9 @@ body {
   font-family: scout, serif;
   color: white;
 }
+#titleInfo p {
+  margin: 0.3em 0;
+}
 .titles {
   width: 60vw;
 }
@@ -143,7 +146,7 @@ h4 {
   background-color: rgba(0, 0, 0, 0.157);
 }
 
-#playButton {
+.playButton {
   width: 30%;
   border-radius: 5px;
   margin: 0.5em auto;
@@ -154,13 +157,15 @@ h4 {
   transition: all 0.3s ease 0s;
   max-width: 200px;
 }
-#playButton:hover {
+.playButton:hover {
   background-color: #2EE59D;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
-
+#titleInfo{
+  display: none;
+}
 
 /* .flipped {
   transform: rotateY(180deg);
@@ -206,11 +211,13 @@ h4 {
     max-width: 800px;
     margin: auto;
   }
-  #titlesLogo {
+  #titleInfo {
     display: block;
+    max-height: 200px;
+    font-size: 3em;
   }
-  #titles {
-    display: none;
+  hr {
+    margin: 0;
   }
 }
 
