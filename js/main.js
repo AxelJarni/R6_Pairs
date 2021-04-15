@@ -56,17 +56,25 @@ const cardArray = [
         img: 'img/Square/ValkyrieSquare.png'
     }
 ];
-cardArray.sort(() => 0.5 - Math.random()) //Sorting array with a Math Random. 0.5 To allow sorting inside with neg/pos value
 
 const grid = document.querySelector('.grid');
 let chosenCards = [];
 let chosenCardsId = [];
 let cardsScore = 0;
-
-let clickCountdown = 40;
+let timerLaunch = 0;
+let clickCountdown = 10;
+let timeleft = 30;
 
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
+        if (i===1) {
+            let space = document.createElement('div');
+            space.className += 'space col-4 col-md-3 my-1';
+            space.innerHTML = 
+            `
+            <p id= "spaceTime">${timeleft} SEC</p>`
+            grid.appendChild(space);
+        }
         let card = document.createElement('img')
         card.setAttribute('src', 'img/Square/R6_Logo.jpg')
         card.setAttribute('data-id', i)
@@ -80,19 +88,22 @@ function flipcard() {
     let cardId = this.getAttribute('data-id')
     chosenCards.push(cardArray[cardId].name)
     chosenCardsId.push(cardId)
-    clickCountdown --;
+    timerLaunch ++;
     if (chosenCards.length <= 2) { // To limit to only 2 cards shown
         this.setAttribute('src', cardArray[cardId].img) //Give img to the card
-        this.removeEventListener('click', flipcard);
+        this.removeEventListener('click', flipcard); //Remove click monitoring to avoid cheating and over counting tries
     }
     if (chosenCards.length === 2) {
         setTimeout(checkMatch, 1000);
+        clickCountdown -=2;
     }
-    if (clickCountdown === 39) {
+    if (timerLaunch === 1) {
         startTimer();
+        console.log("timer should start");
     }
     if (clickCountdown === 0) {
-        alert('too many tries');
+        setTimeout(youLose, 1100);
+        clickCountdown = 10;
     }
 }
 
@@ -117,19 +128,45 @@ function checkMatch() {
         alert('you won');
     }
 }
-let timeleft = 10;
 
 function startTimer() {
-    let downloadTimer = setInterval(function(){
-        if(timeleft <= 0){
-          clearInterval(downloadTimer);
-          document.getElementById("time").innerHTML = "Finished";
-          timeleft = 10;
-        } else {
-          document.getElementById("time").innerHTML = timeleft + " seconds remaining";
-        }
+    let gameTimer = setInterval(function(){
         timeleft -= 1;
+        if(timeleft <= 0){
+          clearInterval(gameTimer);
+          document.getElementById('spaceTime').innerHTML = "0";
+          youLose();
+          timeleft = 30;
+          timerLaunch = 0;
+        } 
+        else {
+          document.getElementById(('spaceTime')).innerHTML = timeleft + ' SEC';
+        }
       }, 1000);
 }
-createBoard();
+
+function showboard() {
+    let startBtn = document.getElementById('start');
+    let grid = document.getElementById('grid');
+    let ending = document.getElementById('ending');
+    grid.classList.remove('hidden');
+    startBtn.classList.add('hidden');
+    ending.classList.add('hidden');
+}
+
+function youLose() {
+    let grid = document.getElementById('grid');
+    let ending = document.getElementById('ending');
+    ending.classList.remove('hidden');
+    grid.classList.add('hidden');
+}
+
+function play(){
+    let grid = document.getElementById('grid');
+    cardArray.sort(() => 0.5 - Math.random()) //Sorting array with a Math Random. 0.5 To allow sorting inside with neg/pos value. Would be better with Fischer Yates
+    grid.innerHTML = '';
+    createBoard();
+    showboard();
+}
+
 

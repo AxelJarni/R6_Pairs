@@ -24,15 +24,22 @@
 
 <body>
   <!-- Add your site or application content here -->
-<header>
-  <div>
+<header class="container-fluid">
+  <div class="row text-center">
     <h2>Time limit</h2>
-    <h3><span id="time"></span></h3>
+    <h3><span id="time"></span> SEC</h3>
   </div>
 </header>
 
 <main class="container-fluid">
-  <div class="row grid justify-content-between"> <!--To manage number per row by size of screen-->
+  <div class="row grid justify-content-between hidden" id="grid"> <!--To manage number per row by size of screen-->
+  </div>
+  <div class= "" id="start">
+    <button onclick="play()">START</button>
+  </div>
+  <div class="hidden" id="ending">
+    <h3>you lose</h3>
+    <button onclick="play()">Replay</button>
   </div>
 </main>
   
