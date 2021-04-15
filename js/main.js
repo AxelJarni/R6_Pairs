@@ -69,10 +69,11 @@ function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
         if (i===1) {
             let space = document.createElement('div');
-            space.className += 'space col-4 col-md-3 my-1';
+            space.className += 'space text-center align-items-center col-4 col-md-3 my-auto';
             space.innerHTML = 
             `
-            <p id= "spaceTime">${timeleft} SEC</p>`
+            <p id= "spaceTime">${timeleft} SEC</p>
+            <p id= "spaceTries">${clickCountdown/2} Tries left</p>`
             grid.appendChild(space);
         }
         let card = document.createElement('img')
@@ -96,6 +97,7 @@ function flipcard() {
     if (chosenCards.length === 2) {
         setTimeout(checkMatch, 1000);
         clickCountdown -=2;
+        document.getElementById('spaceTries').innerHTML = clickCountdown/2 + ' Tries left';
     }
     if (timerLaunch === 1) {
         startTimer();
@@ -108,7 +110,7 @@ function flipcard() {
 }
 
 function checkMatch() {
-    let cards = document.querySelectorAll('img')
+    let cards = document.querySelectorAll('div.grid > img')
     const firstCard = chosenCardsId[0];
     const secondCard = chosenCardsId[1];
     if (chosenCards[0] === chosenCards[1]) {
@@ -132,7 +134,7 @@ function checkMatch() {
 function startTimer() {
     let gameTimer = setInterval(function(){
         timeleft -= 1;
-        if(timeleft <= 0){
+        if(timeleft === 0 || clickCountdown === 0){
           clearInterval(gameTimer);
           document.getElementById('spaceTime').innerHTML = "0";
           youLose();
@@ -163,8 +165,9 @@ function youLose() {
 
 function play(){
     let grid = document.getElementById('grid');
-    cardArray.sort(() => 0.5 - Math.random()) //Sorting array with a Math Random. 0.5 To allow sorting inside with neg/pos value. Would be better with Fischer Yates
+    cardArray.sort(() => 0.5 - Math.random()) //Sorting array with a Math Random. 0.5 to allow sorting inside with neg/pos value. Would be better with Fischer Yates
     grid.innerHTML = '';
+    timeleft = 30;
     createBoard();
     showboard();
 }

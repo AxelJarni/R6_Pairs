@@ -87,10 +87,29 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+@font-face {
+  font-family: scout;
+  src: url(../doc/font/ScoutCond-Bold.otf);
+}   
+
 body {
   min-height: 100vh;
   position: relative;
   background: linear-gradient(to right bottom, #000000, #eed816);
+  font-family: scout, serif;
+  color: white;
+}
+.titles {
+  width: 60vw;
+}
+h1 {
+  border-bottom: 2px solid white;
+  margin: 0;
+}
+
+#logoR6 {
+  width: 80vw;
+  margin: auto;
 }
 
 .cardGame {
@@ -98,9 +117,9 @@ body {
   max-width: 1000px;
 }
 
-#spaceTime {
-  font-size: 2em;
-  font-weight: bold;
+#spaceTime, #spaceTries{
+  font-size: 5.5vw;
+  /* font-weight: bold; */
   color: white;
 }
 
@@ -126,12 +145,12 @@ body {
   } */
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1024px) {
   .space {
     display: none;
   }
   .cardGame {
-    width: 14.28vw;
+    width: 14.1vw;
     height: auto;
   }
 }
