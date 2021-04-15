@@ -118,6 +118,10 @@ h1 {
 h3 {
   font-size: 1.5em;
 }
+#winning h3, #losing h3 {
+  font-size: 3em;
+  margin: 1em auto;
+}
 h4 {
   font-size: 1.5em;
 }
@@ -146,16 +150,25 @@ h4 {
   background-color: rgba(0, 0, 0, 0.157);
 }
 
+.gif{
+  width: 100vw;
+}
+.gif img {
+  width: 90vw;
+  max-width: 600px;
+}
+
 .playButton {
   width: 30%;
   border-radius: 5px;
-  margin: 0.5em auto;
+  margin: 1em auto;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   background-color: #fff;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease 0s;
   max-width: 200px;
+  font-size: 1.5em;
 }
 .playButton:hover {
   background-color: #2EE59D;

@@ -82,7 +82,7 @@ function createBoard() {
             `
             <p id= "logoTime">${timeleft} SEC</p>
             <hr>
-            <p id= "logoTries">${clickCountdown/2} Tries left</p>`;
+            <p id= "logoTries">${clickCountdown/2} Tries left</p>`
         }
         let card = document.createElement('img')
         card.setAttribute('src', 'img/Square/R6_Logo.jpg')
@@ -106,6 +106,7 @@ function flipcard() {
         setTimeout(checkMatch, 1000);
         clickCountdown -=2;
         document.getElementById('spaceTries').innerHTML = clickCountdown/2 + ' Tries left';
+        document.getElementById('logoTries').innerHTML = clickCountdown/2 + ' Tries left';
     }
     if (timerLaunch === 1) {
         startTimer();
@@ -157,6 +158,7 @@ function startTimer() {
         } 
         else {
           document.getElementById(('spaceTime')).innerHTML = timeleft + ' SEC';
+          document.getElementById(('logoTime')).innerHTML = timeleft + ' SEC';
         }
       }, 1000);
 }
