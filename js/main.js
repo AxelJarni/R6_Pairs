@@ -180,6 +180,7 @@ function flipcard() {
     timerLaunch ++;
     if (chosenCards.length <= 2) { // To limit to only 2 cards shown
         this.setAttribute('src', cardArray[cardId].img) //Give img to the card
+        // this.classList.toggle('active'); // Possible use for flip
         this.removeEventListener('click', flipcard); //Remove click monitoring to avoid cheating and over counting tries
     }
     if (chosenCards.length === 2) { // When user pick a pair of cards call for checking match and deduct a try on counter
@@ -191,10 +192,6 @@ function flipcard() {
     if (timerLaunch === 1) { // Call the function to start the timer on first click
         startTimer();
     }
-    // if (clickCountdown === 0 || timeleft === 0) {
-    //     setTimeout(youLose, 1100);
-    //     clickCountdown = 30;
-    // }
 }
 
 // Check for match between the pair of cards chosen by User
@@ -218,12 +215,11 @@ function checkMatch() {
         }
         cards[firstCard].addEventListener('click', flipcard); // Give back the click event listener since it's not a match so that User can try those cards again.
         cards[secondCard].addEventListener('click', flipcard);
+        // cards[firstCard].classList.toggle('active'); Wanted to use it for flip
+        // cards[secondCard].classList.toggle('active');
     }
     chosenCards = []; //Reset the pair chosen
     chosenCardsId = [];
-    // if (cardsScore === cardArray.length) {
-    //     youWin();
-    // }
 }
 
 // Start the time limit
@@ -231,7 +227,6 @@ function startTimer() {
     let gameTimer = setInterval(function(){
         timeleft -= 1;
         if(timeleft === 0 || clickCountdown === 0){ // Losing conditions by time or click count
-            // document.getElementById('spaceTime').innerHTML = "0";
             setTimeout(youLose, 1100); // Calling losing screen
             clearInterval(gameTimer);
             clickCountdown = 30; // Resetting values, useful if replay.
@@ -282,7 +277,6 @@ function youWin(){
     let winning = document.getElementById('winning');
     winning.classList.remove('hidden');
     grid.classList.add('hidden');
-    console.log('win function declared');
 }
 
 // Game function called on button click

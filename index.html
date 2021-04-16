@@ -34,10 +34,10 @@
       
       </div>
     </div>
-    <div id="titles" class="titles text-center align-items-center mx-auto">
+    <section id="titles" class="titles text-center align-items-center mx-auto">
       <h1>Memory Game</h1>
       <h2>Rainbow 6 Siege<br>Operators edition</h2>
-    </div>
+    </section>
   </div>
 </header>
 
@@ -45,24 +45,24 @@
   <div class="row grid justify-content-between hidden" id="grid"> <!-- Grid div where cards will be disposed -->
   </div>
   <div class= "row text-center my-5 text-justify" id="start"><!-- Div shown at the start of the game with rules and presentation -->
-    <div class="rules">
+    <section class="rules">
       <h3><u>Rules of the game</u></h3>
       <p>On the board will be 7 pairs of cards, each of them representing a different R6 operator.<br>
       You can flip only 2 cards per turn to identify a pair during that turn.<br>
       You will have 30 seconds and 15 tries to find them all.</p>
       <h4>Ready to play ?</h4>
-    </div>
+    </section>
     <div>
       <button class="playButton" onclick="play()">Play</button>
     </div>
   </div>
   <div class="row hidden" id="winning"> <!-- Winning screen -->
-    <div class="col-12 m-auto text-center align-items-center"><h3>CONGRATULATIONS</h3></div>
+    <section class="col-12 m-auto text-center align-items-center"><h3>CONGRATULATIONS</h3></section>
     <div class="col-12 gif m-auto text-center align-items-center"><img src="../R6_Pairs/img/Background/win.gif" alt="winning gif"></div>
     <div class="col-12 m-auto text-center align-items-center"><button class="playButton" onclick="play()">Replay</button></div>
   </div>
   <div class="row hidden" id="losing"> <!-- Losing screen -->
-    <div class="col-12 m-auto text-center align-items-center"><h3>SORRY...</h3></div>
+    <section class="col-12 m-auto text-center align-items-center"><h3>SORRY...</h3></section>
     <div class="col-12 gif m-auto text-center align-items-center"><img src="../R6_Pairs/img/Background/lose.gif" alt="losing gif"></div>
     <div class="col-12 m-auto text-center align-items-center"><button class="playButton" onclick="play()">Replay</button></div>
   </div>

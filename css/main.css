@@ -138,7 +138,6 @@ h4 {
 
 #spaceTime, #spaceTries{
   font-size: 5.5vw;
-  /* font-weight: bold; */
   color: white;
 }
 
@@ -153,6 +152,7 @@ h4 {
 .gif{
   width: 100vw;
 }
+
 .gif img {
   width: 90vw;
   max-width: 600px;
@@ -170,20 +170,18 @@ h4 {
   max-width: 200px;
   font-size: 1.5em;
 }
+
 .playButton:hover {
   background-color: #2EE59D;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
+
 #titleInfo{
   display: none;
 }
 
-/* .flipped {
-  transform: rotateY(180deg);
-  transition-duration: 1s; 
-} */
 
 @media only screen and (min-width: 768px) {
   .space {
@@ -196,17 +194,6 @@ h4 {
     max-width: 70%;
     margin: auto;
   }
-  /* .cardGame {
-    width: 25%;
-    height: auto;
-  } */
-}
-
-@media only screen and (min-width: 1024px) {
-  /* .cardGame {
-    width: 20%;
-    height: auto;
-  } */
 }
 
 @media only screen and (min-width: 1024px) {
