@@ -134,7 +134,7 @@ if (window.matchMedia("(min-width: 1024px").matches) {
 }
 else {
     cardArray = squareArray;
-}
+};
 
 // *FUNCTIONS* 
 
@@ -148,7 +148,7 @@ function createBoard() {
             `
             <p id= "spaceTime">${timeleft} SEC</p>
             <hr>
-            <p id= "spaceTries">${clickCountdown/2} Tries left</p>`
+            <p id= "spaceTries">${clickCountdown/2} Tries left</p>`;
             grid.appendChild(space);
             let titleInfo = document.getElementById('titleInfo'); // Used for big screen only when info is in the header with cards format
             titleInfo.classList.remove('hidden');
@@ -156,43 +156,43 @@ function createBoard() {
             `
             <p id= "logoTime">${timeleft} SEC</p>
             <hr>
-            <p id= "logoTries">${clickCountdown/2} Tries left</p>`
+            <p id= "logoTries">${clickCountdown/2} Tries left</p>`;
         }
-        let card = document.createElement('img')
+        let card = document.createElement('img');
         if (window.matchMedia("(min-width: 1024px").matches) { //Media Query to make the img be either a square or card
-            card.setAttribute('src', 'img/Cards/logoCard.jpg')
+            card.setAttribute('src', 'img/Cards/logoCard.jpg');
         }
         else {
-            card.setAttribute('src', 'img/Square/R6_Logo.jpg')
-        }
-        card.setAttribute('data-id', i)
-        card.className += 'cardGame col-4 col-md-3 my-2'
-        card.addEventListener('click', flipcard)
-        grid.appendChild(card)
+            card.setAttribute('src', 'img/Square/R6_Logo.jpg');
+        };
+        card.setAttribute('data-id', i);
+        card.className += 'cardGame col-4 col-md-3 my-2';
+        card.addEventListener('click', flipcard);
+        grid.appendChild(card);
     }
 }
 
 // Flip the card and call other functions depending of the implications of the click
 function flipcard() {
-    let cardId = this.getAttribute('data-id')
+    let cardId = this.getAttribute('data-id');
     chosenCards.push(cardArray[cardId].name)
-    chosenCardsId.push(cardId)
+    chosenCardsId.push(cardId);
     timerLaunch ++;
     if (chosenCards.length <= 2) { // To limit to only 2 cards shown
         this.setAttribute('src', cardArray[cardId].img) //Give img to the card
-        // this.classList.toggle('active'); // Possible use for flip
+        this.classList.toggle('active'); // Possible use for flip useful for hover effect
         this.removeEventListener('click', flipcard); //Remove click monitoring to avoid cheating and over counting tries
-    }
+    };
     if (chosenCards.length === 2) { // When user pick a pair of cards call for checking match and deduct a try on counter
         setTimeout(checkMatch, 1000);
         clickCountdown -=2;
         document.getElementById('spaceTries').innerHTML = clickCountdown/2 + ' Tries left';
         document.getElementById('logoTries').innerHTML = clickCountdown/2 + ' Tries left';
-    }
+    };
     if (timerLaunch === 1) { // Call the function to start the timer on first click
         startTimer();
-    }
-}
+    };
+};
 
 // Check for match between the pair of cards chosen by User
 function checkMatch() {
@@ -215,12 +215,12 @@ function checkMatch() {
         }
         cards[firstCard].addEventListener('click', flipcard); // Give back the click event listener since it's not a match so that User can try those cards again.
         cards[secondCard].addEventListener('click', flipcard);
-        // cards[firstCard].classList.toggle('active'); Wanted to use it for flip
-        // cards[secondCard].classList.toggle('active');
+        cards[firstCard].classList.toggle('active'); //Wanted to use it for flip
+        cards[secondCard].classList.toggle('active');
     }
     chosenCards = []; //Reset the pair chosen
     chosenCardsId = [];
-}
+};
 
 // Start the time limit
 function startTimer() {
@@ -245,9 +245,9 @@ function startTimer() {
         else { // Update the time on for game info every interval (1s)
           document.getElementById(('spaceTime')).innerHTML = timeleft + ' SEC';
           document.getElementById(('logoTime')).innerHTML = timeleft + ' SEC';
-        }
+        };
       }, 1000);
-}
+};
 
 // Show the board when User click play/replay and hide the other elements
 function showboard() {
@@ -257,7 +257,7 @@ function showboard() {
     let winning = document.getElementById('winning');
     let titles = document.getElementById('titles');
     grid.classList.remove('hidden');
-    winning.classList.add('hidden')
+    winning.classList.add('hidden');
     start.classList.add('hidden');
     losing.classList.add('hidden');
     titles.classList.add('hidden');
@@ -312,7 +312,7 @@ function shuffleArray(cardArray) { // Using Fisher-Yates shuffle for best random
     }
     else {
         cardArray = squareArray;
-    }
+    };
     var currentIndex = cardArray.length, temporaryValue, randomIndex;
   
     // While there remain elements to shuffle...
@@ -326,8 +326,8 @@ function shuffleArray(cardArray) { // Using Fisher-Yates shuffle for best random
       temporaryValue = cardArray[currentIndex];
       cardArray[currentIndex] = cardArray[randomIndex];
       cardArray[randomIndex] = temporaryValue;
-    }
+    };
   
     return cardArray;
-  }
+  };
 

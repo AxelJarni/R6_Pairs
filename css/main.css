@@ -134,6 +134,12 @@ h4 {
 .cardGame {
   background-clip: content-box;
   max-width: 1000px;
+  transition: all .2s; 
+}
+
+.cardGame:not(.active):hover {
+  transform: scale(0.95);
+  box-shadow: 0 20px 5px -12px rgba(0, 0, 0, 0.5);
 }
 
 #spaceTime, #spaceTries{
@@ -181,7 +187,6 @@ h4 {
 #titleInfo{
   display: none;
 }
-
 
 @media only screen and (min-width: 768px) {
   .space {
